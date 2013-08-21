@@ -1,0 +1,51 @@
+<dataConfig>
+    <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:MySQL://localhost:3306/yuxia" user="yuxia" password="yuxia123"/>
+	<script><![CDATA[
+                function CalcPrice(row){
+					var listPrice = row.get('list_price');
+					var salePrice = row.get('sale_price');
+					var saleStartDate = row.get('sale_start_date');
+					var saleEndDate = row.get('sale_end_date');
+					var currentDate = new Date();
+					if(salePrice == null){
+						row.put('price', listPrice);
+					} else if(salePrice != null && salePrice < listPrice) {
+						if(saleStartDate == null ){
+							if(saleEndDate != null && currentDate.getTime() <= saleEndDate.getTime() || saleEndDate == null){
+								row.put('price', salePrice);
+							} else {
+								row.put('price', listPrice);
+							}
+						} else if(saleStartDate.getTime() <= currentDate.getTime()){
+							if(saleEndDate != null && currentDate.getTime() <= saleEndDate.getTime() || saleEndDate == null){
+								row.put('price', salePrice);
+							} else {
+								row.put('price', listPrice);
+							}
+						} else {
+							row.put('price', listPrice);
+						}
+						
+					}
+                    //row.remove('category');
+                    return row;
+                }
+        ]]></script>
+    <document>
+        <entity name="product" query="select * from product"
+                deltaQuery="select * from product where last_updated_time > '${dataimporter.last_index_time}'">
+			<entity name="sku" transformer="script:CalcPrice"  
+                    query="select * from sku where parent_product='${product.id}'"
+                    deltaQuery="select parent_product from sku where last_updated_time > '${dataimporter.last_index_time}'"
+                    parentDeltaQuery="select id from product where id=${sku.parent_product}">
+                <field name="sku.name" column="name" />
+                <field name="sku.description" column="description" />
+                <field name="sku.listprice" column="list_price" />
+                <field name="sku.saleprice" column="sale_price" />
+                <field name="sku.saleStartDate" column="sale_start_date" />
+                <field name="sku.saleEndDate" column="sale_end_date" />
+            </entity>
+        </entity>
+    </document>
+</dataConfig>
+
