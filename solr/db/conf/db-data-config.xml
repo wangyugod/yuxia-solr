@@ -46,6 +46,11 @@
                 <field name="sku.saleStartDate" column="sale_start_date" />
                 <field name="sku.saleEndDate" column="sale_end_date" />
             </entity>
+            <entity name="category" query="select category_id from product_category where prod_id = '${product.id}'"
+                    deltaQuery="select category_id from product_category where prod_id = '${product.id}'"
+                    parentDeltaQuery="select id from product where id=${category.prod_id}">
+                <field name="cat.id" column="category_id" />
+            </entity>
         </entity>
     </document>
 </dataConfig>

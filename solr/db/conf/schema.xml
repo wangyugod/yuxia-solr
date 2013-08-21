@@ -288,6 +288,7 @@
    <field name="sku.saleStartDate" type="date"  indexed="true" stored="true" multiValued="true"/>
    <field name="sku.saleEndDate" type="date"  indexed="true" stored="true" multiValued="true"/>
    <field name="price" type="sdouble"  indexed="true" stored="true" multiValued="true"/>
+   <field name="cat.id" type="string" indexed="true" stored="true" multiValued="true" />
    
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
