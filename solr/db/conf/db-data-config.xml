@@ -38,6 +38,7 @@
                     query="select * from sku where parent_product='${product.id}'"
                     deltaQuery="select parent_product from sku where last_updated_time > '${dataimporter.last_index_time}'"
                     parentDeltaQuery="select id from product where id=${sku.parent_product}">
+                <field name="sku.id" column="id" />
                 <field name="sku.name" column="name" />
                 <field name="sku.description" column="description" />
                 <field name="sku.listprice" column="list_price" />

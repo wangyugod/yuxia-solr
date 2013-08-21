@@ -280,6 +280,7 @@
    <field name="description" type="text_ik" indexed="true" stored="true"/>
    <field name="longDescription" type="text_ik" indexed="true" stored="true"/>
 
+   <field name="sku.id" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="sku.name" type="text_ik" indexed="true" stored="true" multiValued="true"/>
    <field name="sku.description" type="text_ik" indexed="true" stored="true" multiValued="true"/>
    <field name="sku.listprice" type="sdouble"  indexed="true" stored="true" multiValued="true"/>
