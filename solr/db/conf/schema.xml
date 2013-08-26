@@ -278,7 +278,8 @@
    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
    <field name="name" type="text_ik" indexed="true" stored="true"/>
    <field name="description" type="text_ik" indexed="true" stored="true"/>
-   <field name="longDescription" type="text_ik" indexed="true" stored="true"/>
+   <field name="long_desc" type="text_ik" indexed="true" stored="true"/>
+   <field name="image_url" type="text_ik" indexed="true" stored="true"/>
 
    <field name="sku.id" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="sku.name" type="text_ik" indexed="true" stored="true" multiValued="true"/>
@@ -292,7 +293,7 @@
    
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
-   <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
+   <field name="text" type="text_ik" indexed="true" stored="false" multiValued="true"/>
 
    <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.
@@ -336,7 +337,7 @@
         or to add multiple fields to the same field for easier/faster searching.  -->
  <copyField source="name" dest="text"/>
  <copyField source="description" dest="text"/>
- <copyField source="longDescription" dest="text"/>
+ <copyField source="long_desc" dest="text"/>
  <!--  <copyField source="id" dest="sku"/>
 
    <copyField source="cat" dest="text"/>
