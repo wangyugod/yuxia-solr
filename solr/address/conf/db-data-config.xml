@@ -1,0 +1,9 @@
+<dataConfig>
+    <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:MySQL://localhost:3306/yuxia" user="yuxia" password="yuxia123"/>
+    <document>
+        <entity name="area" query="select * from area"
+                deltaQuery="select * from area where last_updated_time > '${dataimporter.last_index_time}'">
+        </entity>
+    </document>
+</dataConfig>
+
