@@ -280,6 +280,7 @@
    <field name="description" type="text_ik" indexed="true" stored="true"/>
    <field name="long_desc" type="text_ik" indexed="true" stored="true"/>
    <field name="image_url" type="text_ik" indexed="true" stored="true"/>
+   <field name="merchant_id" type="string" indexed="true" stored="true"/>
 
    <field name="sku.id" type="string" indexed="true" stored="true" multiValued="true" />
    <field name="sku.name" type="text_ik" indexed="true" stored="true" multiValued="true"/>
@@ -290,7 +291,8 @@
    <field name="sku.saleEndDate" type="date"  indexed="true" stored="true" multiValued="true"/>
    <field name="price" type="sdouble"  indexed="true" stored="true" multiValued="true"/>
    <field name="cat.id" type="string" indexed="true" stored="true" multiValued="true" />
-   
+   <field name="area.id" type="string" indexed="true" stored="true" multiValued="true" />
+
    <!-- catchall field, containing all other searchable text fields (implemented
         via copyField further on in this schema  -->
    <field name="text" type="text_ik" indexed="true" stored="false" multiValued="true"/>

@@ -51,6 +51,9 @@
                     parentDeltaQuery="select id from product where id=${category.prod_id}">
                 <field name="cat.id" column="category_id" />
             </entity>
+            <entity name="merchArea" query="select * from merchant_ship_scope where merch_id = '${product.merchant_id}'">
+                <field name="area.id" column="area_id"/>
+            </entity>
         </entity>
     </document>
 </dataConfig>
